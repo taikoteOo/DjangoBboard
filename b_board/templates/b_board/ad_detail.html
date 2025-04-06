@@ -1,0 +1,14 @@
+{% extends 'b_board/base.html' %}
+
+{% block content %}
+<div class="post-list">
+    <h2>Информация об объявлении № {{ad.pk}}</h2>
+    <b>{{ ad.author }}</b>
+    <hr>
+    <h3>{{ ad.title }}</h3>
+    <p>{{ ad.type }}</p>
+    <p>{{ ad.text }}</p>
+    <p>{{ ad.price }}</p>
+    <p>{{ ad.created_ad }}</p>
+</div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'b_board/base.html' %}
+
+{% block content %}
+<div class="post-list">
+<h2>Добавить новое объявление</h2>
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Добавить объявление</button>
+</form>
+</div>
+
+{% endblock content %}

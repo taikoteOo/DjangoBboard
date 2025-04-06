@@ -1,0 +1,16 @@
+{% extends 'b_board/base.html' %}
+
+{% block content %}
+<h2>Последние объявления</h2>
+<div class="post-list">
+    {% for ad in ad %}
+        <h3><b>{{ ad.author }}</b></h3>
+        <h4><a href="{% url 'b_board:read_ad' pk=ad.pk %}">{{ ad.title }}</a></h4>
+        <b>Категория:</b> {{ad.type}}
+        <p>{{ ad.text }}</p>
+        <p>{{ ad.price }}</p>
+        <p>{{ ad.created_at }}</p>
+    {% endfor %}
+</div>
+
+{% endblock content %}
