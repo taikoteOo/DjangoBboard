@@ -1,16 +1,44 @@
 {% extends 'b_board/base.html' %}
+{% load static %}
 
 {% block content %}
-<h2>Последние объявления</h2>
-<div class="post-list">
-    {% for ad in ad %}
-        <h3><b>{{ ad.author }}</b></h3>
-        <h4><a href="{% url 'b_board:read_ad' pk=ad.pk %}">{{ ad.title }}</a></h4>
-        <b>Категория:</b> {{ad.type}}
-        <p>{{ ad.text }}</p>
-        <p>{{ ad.price }}</p>
-        <p>{{ ad.created_at }}</p>
-    {% endfor %}
-</div>
+<section class="search-section">
+    <div class="search-text">
+        <h2>Поиск объявлений</h2>
+        <p>Продавайте и купите вещи, снимите жильё, найдите работу и многое другое</p>
+        <form action="#" method="get" class="search-form">
+            <input type="text" name="q" placeholder="Поиск">
+            <button type="submit">Найти</button>
+        </form>
+    </div>
+    <div class="search-image">
+        <img src="{% static 'img/illustration.png' %}" alt="Поиск">
+    </div>
+</section>
 
+<section class="categories">
+    <h3>Категории</h3>
+    <div class="category-grid">
+        <div class="category-card"><img src="{% static 'img/icons/sell.png' %}" alt=""><span>Продажа</span></div>
+        <div class="category-card"><img src="{% static 'img/icons/rent.png' %}" alt=""><span>Аренда</span></div>
+        <div class="category-card"><img src="{% static 'img/icons/job.png' %}" alt=""><span>Работа</span></div>
+        <div class="category-card"><img src="{% static 'img/icons/service.png' %}" alt=""><span>Услуги</span></div>
+    </div>
+</section>
+
+<section class="latest-ads">
+    <h3>Последние объявления</h3>
+    <div class="ads-grid">
+        {% for ad in ad %}
+            <div class="ad-card">
+                <h4><a href="{% url 'b_board:read_ad' pk=ad.pk %}">{{ ad.title }}</a></h4>
+                <p>{{ ad.text|truncatewords:10 }}</p>
+                <div class="ad-meta">
+                    <span>{{ ad.city }}</span>
+                    <span>{{ ad.created_at|timesince }} назад</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock content %}

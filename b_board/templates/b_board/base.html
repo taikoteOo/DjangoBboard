@@ -4,51 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Объявления</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'b_board:index' %}">Главная</a></li>
-                {% if not user.is_authenticated%}
-                <li><a href="{% url 'users:login' %}">Вход</a></li>
-                <li><a href="{% url 'users:register' %}">Регистрация</a></li>
-                {% else %}
-                <li><a href="{% url 'users:profile' pk=user.pk %}">{{user.username}}</a></li>
-                <li><a href="{% url 'users:logout' %}">Выйти</a></li>
-                {% endif %}
-            </ul>
-        </nav>
+    <header class="main-header">
+        <div class="container header-flex">
+            <h1 class="logo">Объявления</h1>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{% url 'b_board:index' %}">Главная</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'users:profile' pk=user.pk %}">{{ user.username }}</a></li>
+                        <li><a href="{% url 'users:logout' %}">Выйти</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}">Вход</a></li>
+                        <li><a href="{% url 'users:register' %}">Регистрация</a></li>
+                    {% endif %}
+                    <li><a href="#" class="btn-primary">Подать объявление</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <aside class="sidebar">
-            <h3>Категории</h3>
-            <ul>
-                <li><h4>Недвижимость</h4></li>
-                <li><a href="#">Квартиры</a></li>
-                <li><a href="#">Дома, дачи, коттеджи</a></li>
-                <li><a href="#">Гаражи и машиноместа</a></li>
-                <li><h4>Транспорт</h4></li>
-                <li><a href="#">Автомобили</a></li>
-                <li><a href="#">Велосипеды</a></li>
-                <li><a href="#">Электротранспорт</a></li>
-            </ul>
-        </aside>
-        <section class="main-content">
-        {% block content%}
-        {% endblock content%}
-        </section>
-        <aside class="ad-space">
-            <h3>Реклама</h3>
-            <img src="{% static 'img/advertising.jpg' %}" alt="Реклама">
-        </aside>
+    <main class="container">
+        {% block content %}
+        {% endblock content %}
     </main>
 
-    <footer>
+    <footer class="main-footer">
         <p>&copy; 2025 Объявления</p>
     </footer>
 </body>
