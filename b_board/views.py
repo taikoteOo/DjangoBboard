@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 from .forms import AdForm
 from .models import Ad
 
@@ -12,6 +12,7 @@ def about(request):
     context = {'title': 'О сайте'}
     return render(request, template_name='b_board/about.html', context=context)
 
+@login_required
 def add_ad(request):
     if request.method == 'GET':
         ad_form = AdForm()
