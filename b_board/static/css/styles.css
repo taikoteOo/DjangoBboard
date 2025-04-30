@@ -1,129 +1,149 @@
+/* Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body {
-    font-family: Comic Sans MS, cursive;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-header {
-    background: #333;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    width: 100%;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: 0 auto;
-}
-
-nav ul li:first-child {
-    margin-right: auto;
-}
-
-nav ul li:nth-last-child(2) {
-    margin-left: auto;
-    margin-right: 15px;
-}
-
-nav ul li:last-child {
-    margin-left: 0;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-main {
-    width: 80%;
-    display: flex;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-main a {
-    color: rgb(47, 67, 79);
-    text-decoration: none;
-}
-
-.sidebar {
-    width: 25%;
-    padding: 20px;
-    background: #eee;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-}
-
-h4 {
-    margin-bottom: 5px;
-}
-
-.ad-space {
-    width: 30%;
-    padding: 20px;
-    padding-top: 0;
-    background: #f9f9f9;
-    text-align: center;
-}
-
-.ad-space img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-.main-content {
-    flex-grow: 1;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-}
-
-.main-content h2 {
-    border-bottom: 2px solid #333;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-}
-
-.post {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
-}
-
-.post h3 {
-    margin: 0;
-}
-
-.post a {
-    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
     color: #333;
 }
 
-footer {
-    background: #333;
-    color: #fff;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+}
+.logo {
+    font-size: 1.5rem;
+    color: #e63946;
+}
+.nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Search section */
+.search-section {
+    background: #e63946;
+    padding: 2rem 0;
+}
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.search-input,
+.search-select {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    min-width: 200px;
+}
+.search-button {
+    padding: 0.5rem 1rem;
+    background: #2a2a2a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Categories */
+.categories {
+    padding: 2rem 0;
+}
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+.category-card {
+    background: white;
+    padding: 1.5rem;
     text-align: center;
-    padding: 10px;
-    margin-top: 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+.category-card:hover {
+    transform: translateY(-5px);
+}
+.category-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Ads */
+.ads {
+    padding: 2rem 0;
+}
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+.ad-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.ad-image {
     width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.ad-content {
+    padding: 1rem;
+}
+.ad-price {
+    color: #e63946;
+    font-weight: bold;
+}
+.ad-date {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Footer */
+.footer {
+    background: #2a2a2a;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }

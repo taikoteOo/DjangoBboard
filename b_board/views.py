@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .forms import AdForm
 from .models import Ad
@@ -30,6 +30,9 @@ def add_ad(request):
             return index(request)
 
 def read_ad(request, pk):
-    ad = Ad.objects.get(pk=pk)
+    ad = get_object_or_404(Ad, pk=pk)
     context = {'ad': ad, 'title': ad.title}
     return render(request, template_name='b_board/ad_detail.html', context=context)
+
+def page_not_found(request, exception):
+    return render(request, template_name='b_board/404.html', context={'title':'404'})

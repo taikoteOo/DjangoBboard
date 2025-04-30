@@ -21,3 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('b_board.urls')),
 ]
+
+handler404 = 'b_board.views.page_not_found'
