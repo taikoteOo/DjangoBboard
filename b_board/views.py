@@ -37,3 +37,6 @@ def read_ad(request, pk):
 
 def page_not_found(request, exception):
     return render(request, template_name='b_board/404.html', context={'title':'404'})
+
+def not_found(request):
+    return render(request, template_name='b_board/404.html', context={'title': '404'})
