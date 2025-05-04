@@ -22,15 +22,16 @@ def register(request):
             new_user.set_password(form.cleaned_data['password'])
             # сохраняем пользователя в ДБ
             new_user.save()
+            login(request, new_user)
             context = {'title':'Регистрация завершена', 'new_user': new_user}
-            return redirect('b_board:index')
+            return render(request, template_name='users/registration_done.html', context=context)
     # Если метод GET (страница с пустой формой регистрации)
     form = NewRegistrationForm()
     context = {'title':'Регистрация пользователя', 'register_form': form}
     return render(request, template_name='users/registration.html', context=context)
 
 def log_in(request):
-    #создание формы
+    # создание формы
     form = AuthenticationForm(request, request.POST)
     # проверка формы
     if form.is_valid():

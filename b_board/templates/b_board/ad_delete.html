@@ -1,14 +1,14 @@
-{% extends 'blog/base.html' %}
+{% extends 'b_board/base.html' %}
 
 {% block content %}
-<div class="post-list">
+<div class="ad-list">
     <h3>Удаление объявления</h3>
     <p>Автор - {{ad.author}}</p>
     <p>Заголовок - {{ad.title}}</p>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Удалить объявление</button>
-        <a href="{% url 'blog:index' %}">
+        <a href="{% url 'b_board:index' %}">
             <button type="button">Отменить</button>
         </a>
     </form>

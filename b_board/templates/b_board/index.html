@@ -29,16 +29,34 @@
 <section class="latest-ads">
     <h3>Последние объявления</h3>
     <div class="ads-grid">
-        {% for ad in ad %}
+        {% for ad in ads %}
             <div class="ad-card">
-                <h4><a href="{% url 'b_board:read_ad' pk=ad.pk %}">{{ ad.title }}</a></h4>
-                <p>{{ ad.text|truncatewords:10 }}</p>
-                <div class="ad-meta">
-                    <span>{{ ad.city }}</span>
-                    <span>{{ ad.created_at|timesince }} назад</span>
-                </div>
+                <h4><a href="{% url 'b_board:read_ad' slug=ad.slug %}">{{ ad.title }}</a></h4>
+                {% if post.image %}
+                    <img src="{{ad.image.url}}" width="150px" height="auto">
+                {% endif %}
+                <p>{{ ad.category }}</p>
+                <p>{{ ad.text }}</p>
+                <p>{{ ad.price }} руб</p>
+                <p>Дата создания: {{ ad.created_at }}</p>
             </div>
         {% endfor %}
     </div>
 </section>
 {% endblock content %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo;Первая</a>
+            <a href="?page={{ page_obj.previous_page_number}}">Предыдущая</a>
+        {% endif %}
+        <span class="current">
+            Страница {{page_obj.number}} из {{page_obj.paginator.num_pages}}
+        </span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number}}">Следующая</a>
+            <a href="?page={{page_obj.paginator.num_pages}}">Последняя&raquo;</a>
+        {% endif %}
+    </span>
+</div>

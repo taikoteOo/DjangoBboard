@@ -1,14 +1,42 @@
 {% extends 'b_board/base.html' %}
-
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/ad_detail.css' %}">
+{% endblock %}
 {% block content %}
-<div class="post-list">
+<div class="ad-list">
     <h2>Информация об объявлении № {{ad.pk}}</h2>
-    <b>{{ ad.author }}</b>
-    <hr>
     <h3>{{ ad.title }}</h3>
     <p>{{ ad.type }}</p>
     <p>{{ ad.text }}</p>
+    {% if ad.image %}
+        <img src="{{ad.image.url}}" width="200px" height="auto">
+    {% endif %}
     <p>{{ ad.price }}</p>
+    <b>{{ ad.author }}</b>
     <p>{{ ad.created_ad }}</p>
+    {% if user == ad.author %}
+    <div class='btn-actions'>
+        <div class='btn-edit-ad'>
+            <a href="{%url 'b_board:update_ad' slug=ad.slug%}">
+                <button type="button">Редактировать</button>
+            </a>
+        </div>
+        <div class='btn-del-ad'>
+            <a href="{%url 'b_board:delete_ad' slug=ad.slug%}">
+                <button type="button">Удалить</button>
+            </a>
+        </div>
+    </div>
+    {%endif%}
+    {% if user.is_superuser %}
+    <div class='btn-actions'>
+        <div class='btn-del-ad'>
+            <a href="{%url 'b_board:delete_ad' slug=ad.slug%}">
+                <button type="button">Удалить</button>
+            </a>
+        </div>
+    </div>
+    {%endif%}
 </div>
 {% endblock content %}
