@@ -15,28 +15,22 @@
     <p>{{ ad.price }}</p>
     <b>{{ ad.author }}</b>
     <p>{{ ad.created_ad }}</p>
-    {% if user == ad.author %}
+
     <div class='btn-actions'>
+        {% if user == ad.author %}
         <div class='btn-edit-ad'>
             <a href="{%url 'b_board:update_ad' slug=ad.slug%}">
                 <button type="button">Редактировать</button>
             </a>
         </div>
+        {%endif%}
+        {% if user.is_superuser or user == ad.author%}
         <div class='btn-del-ad'>
             <a href="{%url 'b_board:delete_ad' slug=ad.slug%}">
                 <button type="button">Удалить</button>
             </a>
         </div>
+        {%endif%}
     </div>
-    {%endif%}
-    {% if user.is_superuser %}
-    <div class='btn-actions'>
-        <div class='btn-del-ad'>
-            <a href="{%url 'b_board:delete_ad' slug=ad.slug%}">
-                <button type="button">Удалить</button>
-            </a>
-        </div>
-    </div>
-    {%endif%}
 </div>
 {% endblock content %}

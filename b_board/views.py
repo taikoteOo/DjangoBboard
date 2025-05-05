@@ -33,7 +33,7 @@ def read_ad(request, slug):
 def update_ad(request, slug):
     ad = get_object_or_404(Ad, slug=slug)
     if request.method == 'POST':
-        ad_form = AdForm(data=request.POST, files=request.FILES, author=request.user)
+        ad_form = AdForm(data=request.POST, files=request.FILES, author=request.user, instance=ad)
         if ad_form.is_valid():
             ad_form.save()
             return read_ad(request, ad.slug)
@@ -42,6 +42,8 @@ def update_ad(request, slug):
             'title': ad.title,
             'text': ad.text,
             'image': ad.image,
+            'type': ad.type,
+            'price': ad.price,
         }, author=request.user)
         return render(request, template_name='b_board/ad_edit.html', context={'form': ad_form})
 
